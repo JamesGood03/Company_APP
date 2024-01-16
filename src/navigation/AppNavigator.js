@@ -32,7 +32,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyBLiKhpoJnkcpGPCI2Sr51esdaRxIOb8N4",
   authDomain: "",
   databaseURL: "",
-  projectId: "netcetera-mobile",
+  projectId: "",
   storageBucket: "",
   messagingSenderId: "",
   appId: "",
