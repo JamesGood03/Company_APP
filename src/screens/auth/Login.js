@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ScrollView,
   TouchableOpacity,
@@ -6,7 +6,11 @@ import {
   KeyboardAvoidingView,
   Image,
 } from "react-native";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import {
   Layout,
   Text,
@@ -15,13 +19,41 @@ import {
   useTheme,
   themeColor,
 } from "react-native-rapi-ui";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function ({ navigation }) {
   const { isDarkmode, setTheme } = useTheme();
   const auth = getAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("demo@netcetera.co.uk");
+  const [password, setPassword] = useState("DemoDemo32az");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const hasLoggedInBefore = await AsyncStorage.getItem("hasLoggedIn");
+      if (hasLoggedInBefore) {
+        // User has logged in before, navigate to home screen
+        login(); // Replace with your actual home screen name
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigation]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in
+        await AsyncStorage.setItem("hasLoggedIn", "true");
+        login();// Replace with your actual home screen name
+      }
+    });
+
+    return () => {
+      // Cleanup the listener when the component is unmounted
+      unsubscribe();
+    };
+  }, [auth, navigation]);
 
   async function login() {
     setLoading(true);
@@ -37,7 +69,7 @@ export default function ({ navigation }) {
     });
   }
 
-  return (
+ return (
     <KeyboardAvoidingView behavior="height" enabled style={{ flex: 1 }}>
       <Layout>
         <ScrollView

@@ -18,7 +18,9 @@ import Loading from "../screens/utils/Loading";
 import Support from "../screens/Support";
 import Stream from "../screens/Stream";
 import Ai from "../screens/Ai";
+import domainsearch from "../screens/domainsearch";
 import store from "../screens/store";
+import news from "../screens/news";
 // Auth screens
 import Login from "../screens/auth/Login";
 import Register from "../screens/auth/Register";
@@ -163,7 +165,31 @@ const MainTabs = () => {
 			<TabBarText focused={focused} title="store" />
 		  ),
 			tabBarIcon: ({ focused }) => (
-			<TabBarIcon focused={focused} icon={"storefront"}/>
+			<TabBarIcon focused={focused} icon={"cart"}/>
+		  ),
+		}}
+	   />
+	   	  <Tabs.Screen
+		name="news"
+		component={news}
+		options={{
+		  tabBarLabel: ({ focused }) => (
+			<TabBarText focused={focused} title="news" />
+		  ),
+			tabBarIcon: ({ focused }) => (
+			<TabBarIcon focused={focused} icon={iconName = 'newspaper'}/>
+		  ),
+		}}
+	   />
+	   	  <Tabs.Screen
+		name="domainsearch"
+		component={domainsearch}
+		options={{
+		  tabBarLabel: ({ focused }) => (
+			<TabBarText focused={focused} title="domainsearch" />
+		  ),
+			tabBarIcon: ({ focused }) => (
+			<TabBarIcon focused={focused} icon={iconName = 'search'}/>
 		  ),
 		}}
 	   />

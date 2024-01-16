@@ -1,12 +1,19 @@
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, Linking, Image } from 'react-native';
-import { Layout, Text } from 'react-native-rapi-ui';
-import { Button } from 'react-native-paper';
+import { ScrollView, StyleSheet, TouchableOpacity, Linking, Image, View, Text } from 'react-native';
+import { Layout } from 'react-native-rapi-ui';
 
-const StoreScreen = () => {
+const StoreScreen = ({ navigation }) => {
   const openWebPage = (url) => {
     Linking.openURL(url);
   };
+
+  const renderButton = (text, onPress) => (
+    <TouchableOpacity style={styles.customButton} onPress={onPress}>
+      <View style={styles.buttonContainer}>
+        <Text style={styles.customButtonText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 
   const sections = [
     {
@@ -30,86 +37,77 @@ const StoreScreen = () => {
       imageSource: require('../../assets/website.png'),
       url: 'https://my.netcetera.co.uk/design',
     },
-	    {
+    {
       title: 'Email',
       description: 'Ideal for people who want a reliable, easy-to-use and simple to set up email solution for sending and receiving emails from your company or personal domain name.',
       price: 'from £1.99/mo',
       imageSource: require('../../assets/Email.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/email-hosting',
     },
-	
-	    {
+    {
       title: 'Servers',
       description: 'On-demand Bare Metal servers featuring local SSDs, powerful Intel Xeon processors, and superfast network.',
       price: 'from £55.00/mo',
       imageSource: require('../../assets/Servers.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/servers-budget-dedicated-servers',
     },
-	{
+    {
       title: 'Digital Marketing',
       description: 'With our expertise in SEO, PPC, Social, Content Marketing, Web Design & Development, we will help you develop, succeed and grow!',
       price: 'from £75.00/mo',
       imageSource: require('../../assets/DigitalM.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://netcetera.design',
     },
-	{
+    {
       title: 'Web Sites',
       description: 'Our UK based web hosting packages can help create a professional backbone for your online business.',
       price: 'from £99',
       imageSource: require('../../assets/Websites.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/web-hosting',
     },
-	{
+    {
       title: 'Data Centre',
       description: 'Netcetera owns and operates The Dataport - a state-of-the-art Datacenter for the housing of all your IT infrastructure.',
       price: 'from £35.00/mo',
       imageSource: require('../../assets/Datacentre.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/datacentre-colocation',
     },
-	{
+    {
       title: 'ECommerce Website',
       description: 'Creating an online store takes just a few simple clicks. Add products and start selling! These easy-to-design, no code websites give your clients the freedom to create, design, and manage their online business by taking secure payments.',
       price: 'from £6.99/mo',
       imageSource: require('../../assets/ecommerce.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/wordpress-hosting/e-commerce-package',
     },
-	{
+    {
       title: 'Web Hosting',
       description: 'Our UK based web hosting packages can help create a professional backbone for your online business.',
       price: 'from £1.99/mo',
       imageSource: require('../../assets/WebHosting.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/cloud-web-hosting',
     },
-	{
+    {
       title: 'Backups and DR',
       description: 'Regardless of the size of your business our IT Backup and Disaster Recovery solutions are cost effective and just as crucially built around your own requirements.',
       price: 'from £7.00/mo',
       imageSource: require('../../assets/Backups.png'),
-      url: 'https://my.netcetera.co.uk/design',
+      url: 'https://my.netcetera.co.uk/store/personal-cloud-storage-and-backup',
     },
-    // Add more sections for Email, Servers, Digital Marketing, Websites, Datacentre, E-commerce Website, Web Hosting, Backups & DR, Something Else
   ];
 
   return (
     <ScrollView style={styles.container}>
-      <Layout>
-        {sections.map((section, index) => (
-          <TouchableOpacity key={index} onPress={() => openWebPage(section.url)}>
+      {sections.map((section, index) => (
+        <View key={index} style={[styles.sectionContainer, { backgroundColor: '#fff' }]}>
+          <TouchableOpacity onPress={() => openWebPage(section.url)}>
             <Image style={styles.sectionImage} source={section.imageSource} />
             <Text style={styles.sectionTitle}>{section.title}</Text>
             <Text style={styles.sectionDescription}>{section.description}</Text>
             <Text style={styles.sectionPrice}>{section.price}</Text>
-            <Button
-              mode="contained"
-              color="#fff"
-              onPress={() => openWebPage(section.url)}
-              style={styles.learnMoreButton}
-            >
-              Learn More
-            </Button>
+            {renderButton('Learn More', () => openWebPage(section.url))}
           </TouchableOpacity>
-        ))}
-      </Layout>
+        </View>
+      ))}
     </ScrollView>
   );
 };
@@ -117,7 +115,15 @@ const StoreScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f4f4f4',
+  },
+  sectionContainer: {
+    marginBottom: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    padding: 20,
+    borderRadius: 10,
+    // Customize other styles for each section container here
   },
   sectionImage: {
     width: '100%',
@@ -139,11 +145,19 @@ const styles = StyleSheet.create({
     color: '#888',
     marginBottom: 10,
   },
-  learnMoreButton: {
+  customButton: {
+    marginTop: 8,
+    backgroundColor: '#007BFF',
+    borderRadius: 5,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  customButtonText: {
     color: '#fff',
-    textDecorationLine: 'underline',
-    marginBottom: 20,
-	    marginTop: 10, // Adjust as needed
   },
 });
 

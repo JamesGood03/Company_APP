@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "1068475048238",
+    "firebase_url": "https://netcetera-mobile.firebaseio.com",
+    "project_id": "netcetera-mobile",
+    "storage_bucket": "netcetera-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068475048238:android:cdf80c55254470139b9abf",
+        "android_client_info": {
+          "package_name": "im.netcetera.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068475048238-8hka6trpr10594o1i5lt9u7vd2mmlg1s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.netcetera.herenow",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "1068475048238-vpojfhnk92n9tidacaqb4g5o5cffel57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCNa8nU1dGvZSt2T4SInGlhsJqu1DCudc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068475048238-vpojfhnk92n9tidacaqb4g5o5cffel57.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1068475048238-upjquis1o1g43c898lf2k79bciifaeim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.netcetera.herenow"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1068475048238:android:2e1c46037f7f5faa9b9abf",
+        "android_client_info": {
+          "package_name": "im.netcetera.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1068475048238-vpojfhnk92n9tidacaqb4g5o5cffel57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCNa8nU1dGvZSt2T4SInGlhsJqu1DCudc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1068475048238-vpojfhnk92n9tidacaqb4g5o5cffel57.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1068475048238-upjquis1o1g43c898lf2k79bciifaeim.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.netcetera.herenow"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
